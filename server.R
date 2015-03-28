@@ -12,6 +12,6 @@ dat<-data.frame(dat)
 shinyServer(function(input, output) {
   
   output$gvis <- renderGvis({
-    gvisGeoChart(dat, locationvar="Code", input$var, hovervar="Name", options=list(region="AR", displayMode="region", resolution="provinces", width=600, height=400))  
+    gvisGeoChart(dat, locationvar="Code", input$var, hovervar="Name", options=list(region="AR", displayMode="region", resolution="provinces", width=600, height=400,  colorAxis="{colors:['#FFFFFF', '#0000FF']}"))  
   })
 })
