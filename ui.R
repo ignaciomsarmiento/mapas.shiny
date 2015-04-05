@@ -52,13 +52,44 @@ shinyUI(pageWithSidebar(
                                  selected = "AR-C")
      
     
-    )
+    ),
+    conditionalPanel(condition="input.conditionedPanels==3",
+                     checkboxGroupInput(inputId="provincia2",label="Provincia",
+                                        choices =  list("Autonomous City of Buenos Aires"="AR-C",
+                                                "Buenos Aires"="AR-B",
+                                                "Catamarca"="AR-K",
+                                                "Cordoba"="AR-X",
+                                                "Corrientes"="AR-W",
+                                                "Chaco"="AR-H",
+                                                "Chubut"="AR-U",
+                                                "Entre Rios"="AR-E",
+                                                "Formosa"="AR-P",
+                                                "Jujuy"="AR-Y",
+                                                "La Pampa"="AR-L",
+                                                "La Rioja"="AR-F",
+                                                "Mendoza"="AR-M",
+                                                "Misiones"="AR-N",
+                                                "Neuquen"="AR-Q",
+                                                "Rio Negro"="AR-R",
+                                                "Salta"="AR-A",
+                                                "San Juan"="AR-J",
+                                                "San Luis"="AR-D",
+                                                "Santa Cruz"="AR-Z",
+                                                "Santa Fe"="AR-S",
+                                                "Santiago del Estero"="AR-G",
+                                                "Tucuman"="AR-T",
+                                                "Tierra del Fuego"="AR-V",
+                                                "Malvinas"="FK"),
+                                 selected = "AR-C")
+    )            
+                     
   ),
   
   mainPanel(
     tabsetPanel(
-      tabPanel("Mapas de Inversión", h4("Mapas de Inversión"), htmlOutput("gvis"), value=1),
-      tabPanel("Evolución Inversión por Provincia", h4("Evolución Inversión por Provincia"), htmlOutput("bar"), value=2),
+      tabPanel("Mapas", h4("Mapas de Inversión"), htmlOutput("gvis"), value=1),
+      tabPanel("Inversión por Provincia", h4("Evolución Inversión por Provincia"), htmlOutput("bar"), value=2),
+      tabPanel("Evolución", h4("Evolución Inversión Comparativo Provincias"), htmlOutput("line"), value=3),
       id="conditionedPanels"
     )
 )
