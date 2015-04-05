@@ -1,16 +1,8 @@
 require(googleVis)
 require(shiny)
-require(xlsx)
-library(RCurl)
-dat<-read.xlsx("data/Inversion.xlsx",sheetName = "Inversion", header=TRUE)
-dat<-dat[,c(-3,-4,-17,-18,-19)]
 
-names(dat)<-c("Code","Name","y.2003","y.2004","y.2005", "y.2006","y.2007","y.2008","y.2009","y.2010","y.2011","y.2012","y.2013","y.2014") 
 
-dat<-reshape(dat, varying=3:14, direction="long")
-dat<-data.frame(dat)
-names(dat)<-c("Code","Name","Year","Inversion","id")
-
+load("data/data.Rda")
 
 shinyServer(function(input, output) {
   data<-reactive({
