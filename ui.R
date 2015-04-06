@@ -1,7 +1,7 @@
 require(shiny)
 
 shinyUI(pageWithSidebar(
-  headerPanel("Montos anuales  de anuncios de inversión por provincia 2003 - 2014*(mill u$s)"),
+  headerPanel("Anuncios de inversión por provincia 2003 - 2014*"),
   sidebarPanel(
     conditionalPanel(condition="input.conditionedPanels==1",
                      selectInput("year", 
@@ -86,6 +86,9 @@ shinyUI(pageWithSidebar(
   ),
   
   mainPanel(
+    strong("Todos los montos son en millones de dolares"), 
+    p("Las inversiones registradas aquí corresponden a los anuncios de empresas que se relevan de los medios periodísticos, encuestas propias e información directa de las firmas. Se computan tanto inversiones en ampliación, greenfield como en fusiones y adquisiciones."),
+    p("*Nota: los datos para 2014 son provisorios"),
     tabsetPanel(
       tabPanel("Mapas", h4("Mapas de Inversión"), htmlOutput("gvis"), value=1),
       tabPanel("Inversión por Provincia", h4("Evolución Inversión por Provincia"), htmlOutput("bar"), value=2),
