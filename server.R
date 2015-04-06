@@ -4,6 +4,7 @@ library(stringr)
 
 load("data/data.Rda") 
 
+dat$Inversion<-round(dat$Inversion,2)
 #prepare the data set for the line plots
 g<-factor(unique(dat$Name))
 c<-split(dat,g)
