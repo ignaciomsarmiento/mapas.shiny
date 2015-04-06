@@ -1,8 +1,20 @@
 require(googleVis)
 require(shiny)
+library(stringr)
 
+load("data/data.Rda") 
 
-load("data/data.Rda")
+#prepare the data set for the line plots
+g<-factor(unique(dat$Name))
+c<-split(dat,g)
+d <- data.frame(do.call("cbind", c))
+x<-seq(4,length(names(d)),by=5)
+d<-d[,c(3,x)]
+z<-as.character(attributes(c)$names)
+z<-str_trim(z, "right") 
+names(d)<-c("Year",z)
+
+d<-data.frame(d)
 
 shinyServer(function(input, output) {
   data<-reactive({
@@ -38,14 +50,9 @@ shinyServer(function(input, output) {
   
   
   data3<-reactive({
-    a <- subset(dat, Code %in% input$provincia2)
-    g<-factor(unique(a$Code))
-    c<-split(a,g)
-    d <- data.frame(do.call("cbind", c))
-    x<-seq(4,length(names(d)),by=5)
-    d<-d[,c(3,x)]
-    z<-as.character(unique(a$Name))
-    names(d)<-c("Year",z)
+    myvars <- names(d) %in% c("Year",input$provincia2)
+    d <- data.frame(d[myvars])
+    d<-droplevels(d)
     return(d)
   })
   
